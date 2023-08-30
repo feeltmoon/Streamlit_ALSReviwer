@@ -48,7 +48,7 @@ def copy_data():
         
         chkacn_var.insert(0, var2.get())
         chkacn_formOID.insert(0,formOID2.get())
-        chkacn_folderOID.inser…[omitted]
+        #chkacn_folderOID.inser…[omitted]
         
 # Initialize Streamlit app
 st.set_page_config(page_title="My Streamlit App")
