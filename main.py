@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
-
+import io
+import base64
 
 # Create the main function to run the app
 
