@@ -29,7 +29,7 @@ if uploaded_file is not None:
         df = df[df['DraftFieldActive'] == True]
         option_list = ['FieldOID', 'FormOID', 'VariableOID', 'DataDictionaryName', 'PreText']
         selected_option = st.sidebar.selectbox("Fields Search", option_list)
-        user_input = st.sidebar.text_input("Enter text")
+        user_input = st.sidebar.text_input("Please enter a field key word")
 
         if selected_option is not None and user_input is not None:
             filtered_df = df[df[selected_option].str.contains(user_input, case=False)]
@@ -44,7 +44,7 @@ if uploaded_file is not None:
         df_frm = df_frm[df_frm['DraftFormActive'] == True]
         option_list_frm = ['OID', 'DraftFormName', 'LogDirection', 'IsSignatureRequired']
         selected_option_frm = st.sidebar.selectbox("Form Search", option_list_frm)
-        user_input_frm = st.sidebar.text_input("Enter text")
+        user_input_frm = st.sidebar.text_input("Please enter a form key word")
 
         if selected_option_frm is not None and user_input_frm is not None:
             filtered_df_frm = df_frm[df_frm[selected_option_frm].str.contains(user_input_frm, case=False)]
