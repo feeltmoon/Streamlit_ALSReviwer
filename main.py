@@ -33,7 +33,7 @@ if uploaded_file is not None:
         if selected_option is not None and user_input is not None:
             filtered_df = df[df[selected_option].str.contains(user_input, case=False)]
             filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "VariableOID", "DataFormat","IsLog","IsVisible"])
-            st.dataframe(filtered_df,width=200)
+            st.dataframe(filtered_df,width=800)
 
 
 st.markdown("""---""")
