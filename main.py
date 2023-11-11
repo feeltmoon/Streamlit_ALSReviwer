@@ -14,8 +14,8 @@ if uploaded_file is not None:
     bytes_data = uploaded_file.read()
     df = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Fields', engine='openpyxl')
     #return df
-    if df is not None:
-        st.dataframe(df)
+    #if df is not None:
+        #st.dataframe(df)
 
 options = df.columns.tolist()
 selected_option = st.sidebar.selectbox("Filter by", options)
@@ -23,7 +23,7 @@ selected_option = st.sidebar.selectbox("Filter by", options)
 st.sidebar.title("Text Input")
 user_input = st.sidebar.text_input("Enter text")
 
-if user_input is not None:
+if df is not None and user_input is not None:
     filtered_df = df[df[selected_option] == user_input]
     st.dataframe(filtered_df)
 
