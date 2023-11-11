@@ -23,10 +23,14 @@ if uploaded_file is not None:
     #return df
     #if df is not None:
         #st.dataframe(df)
-    if df is not None and user_input is not None:
-        filtered_df = df[df[selected_option] == user_input]
-        filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "VariableOID", "DataFormat","IsLog","IsVisible"])
-        st.dataframe(filtered_df)
+    if df is not None:
+        options = df.columns.tolist()
+        selected_option = st.sidebar.selectbox("Filter by", options)
+
+        if selected_option is not None and user_input is not None:
+            filtered_df = df[df[selected_option] == user_input]
+            filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "VariableOID", "DataFormat","IsLog","IsVisible"])
+            st.dataframe(filtered_df)
 
 
 st.markdown("""---""")
