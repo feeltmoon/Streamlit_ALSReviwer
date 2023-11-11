@@ -12,10 +12,9 @@ st.title("XLSX File Uploader and Filter")
 uploaded_file = st.file_uploader("Choose your file", accept_multiple_files=False, type=['xlsx'])
 
 #sidebar
-option_list = ['Default']
-selected_option = st.sidebar.selectbox("Filter by", option_list)
-st.sidebar.title("Text Input")
-user_input = st.sidebar.text_input("Enter text")
+#option_list = ['Default']
+#selected_option = st.sidebar.selectbox("Filter by", option_list)
+
 
 
 if uploaded_file is not None:
@@ -28,10 +27,13 @@ if uploaded_file is not None:
         option_list = df.columns.tolist()
         selected_option = st.sidebar.selectbox("Filter by", option_list)
 
+        st.sidebar.title("Text Input")
+        user_input = st.sidebar.text_input("Enter text")
+
         if selected_option is not None and user_input is not None:
             filtered_df = df[df[selected_option].str.contains(user_input, case=False)]
             filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "VariableOID", "DataFormat","IsLog","IsVisible"])
-            st.dataframe(filtered_df)
+            st.dataframe(filtered_df,width=200)
 
 
 st.markdown("""---""")
