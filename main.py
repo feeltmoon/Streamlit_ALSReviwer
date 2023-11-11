@@ -12,7 +12,7 @@ st.title("XLSX File Uploader and Filter")
 uploaded_file = st.file_uploader("Choose your file", accept_multiple_files=False, type=['xlsx'])
 
 #sidebar
-selected_option = st.sidebar.selectbox("Filter by", "Default")
+selected_option = st.sidebar.selectbox("Filter by", "")
 st.sidebar.title("Text Input")
 user_input = st.sidebar.text_input("Enter text")
 
