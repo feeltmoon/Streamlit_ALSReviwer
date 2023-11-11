@@ -24,16 +24,31 @@ if uploaded_file is not None:
     #if df is not None:
         #st.dataframe(df)
     if df is not None:
-        option_list = df.columns.tolist()
-        selected_option = st.sidebar.selectbox("Filter by", option_list)
-
-        st.sidebar.title("Text Input")
+        # Header:
+        st.sidebar.title("Field Search")
+        df = df[df['DraftFieldActive'] == True]
+        option_list = ['FieldOID', 'FormOID', 'VariableOID', 'DataDictionaryName', 'PreText']
+        selected_option = st.sidebar.selectbox("Fields Search", option_list)
         user_input = st.sidebar.text_input("Enter text")
 
         if selected_option is not None and user_input is not None:
             filtered_df = df[df[selected_option].str.contains(user_input, case=False)]
             filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "VariableOID", "DataFormat","IsLog","IsVisible"])
-            st.dataframe(filtered_df)
+            st.dataframe(filtered_df, width=800)
 
+    # Form Search:
+    df_frm = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Forms', engine='openpyxl')
+    if df_frm is not None:
+        # Header:
+        st.sidebar.title("Form Search")
+        df_frm = df_frm[df_frm['DraftFormActive'] == True]
+        option_list_frm = ['OID', 'DraftFormName', 'LogDirection', 'IsSignatureRequired']
+        selected_option_frm = st.sidebar.selectbox("Form Search", option_list_frm)
+        user_input_frm = st.sidebar.text_input("Enter text")
+
+        if selected_option_frm is not None and user_input_frm is not None:
+            filtered_df_frm = df_frm[df_frm[selected_option_frm].str.contains(user_input_frm, case=False)]
+            filtered_df_frm = pd.DataFrame(filtered_df_frm,columns=["OID", "DraftFormName", "IsSignatureRequired", "LogDirection"])
+            st.dataframe(filtered_df, width=800)
 
 st.markdown("""---""")
