@@ -17,11 +17,15 @@ if uploaded_file is not None:
     if df is not None:
         st.dataframe(df)
 
-        options = df.columns.tolist()
-        selected_option = st.sidebar.selectbox("Filter by", options)
-        filtered_df = df[df[selected_option].notna()]
+options = df.columns.tolist()
+selected_option = st.sidebar.selectbox("Filter by", options)
 
+st.sidebar.title("Text Input")
+user_input = st.sidebar.text_input("Enter text")
 
+if user_input is not None:
+    filtered_df = df[df[selected_option] == user_input]
+    st.dataframe(filtered_df)
 
 
 st.markdown("""---""")
