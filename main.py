@@ -33,8 +33,10 @@ if uploaded_file is not None:
 
         if selected_option is not None and user_input is not None:
             filtered_df = df[df[selected_option].str.contains(user_input, case=False)]
-            filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "VariableOID", "DataFormat","IsLog","IsVisible"])
+            filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "FieldOID", "VariableOID", "DataFormat","DataDictionaryName", "IsLog", "IsVisible"])
+            st.title("Field")
             st.dataframe(filtered_df)
+            st.markdown("""---""")
 
     # Form Search:
     df_frm = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Forms', engine='openpyxl')
@@ -49,6 +51,8 @@ if uploaded_file is not None:
         if selected_option_frm is not None and user_input_frm is not None:
             filtered_df_frm = df_frm[df_frm[selected_option_frm].str.contains(user_input_frm, case=False)]
             filtered_df_frm = pd.DataFrame(filtered_df_frm,columns=["OID", "DraftFormName", "IsSignatureRequired", "LogDirection"])
+            st.title("Form")
             st.dataframe(filtered_df_frm)
-
+            st.markdown("""---""")
+            
 st.markdown("""---""")
