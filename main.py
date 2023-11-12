@@ -21,7 +21,7 @@ if uploaded_file is not None:
     bytes_data = uploaded_file.read()
 
     try: 
-        df = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Fields', engine='openpyxl'):
+        df = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Fields', engine='openpyxl')
         #return df
         #if df is not None:
             #st.dataframe(df)
