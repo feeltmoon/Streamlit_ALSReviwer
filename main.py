@@ -48,7 +48,7 @@ if uploaded_file is not None:
         selected_option_frm = st.sidebar.selectbox("Form Search", option_list_frm)
         user_input_frm = st.sidebar.text_input("Please enter a form key word")
 
-        if selected_option_frm is not None and user_input_frm is not None:
+        if selected_option_frm is not None and user_input_frm != '':
             filtered_df_frm = df_frm[df_frm[selected_option_frm].str.contains(user_input_frm, case=False)]
             filtered_df_frm = pd.DataFrame(filtered_df_frm,columns=["OID", "DraftFormName", "IsSignatureRequired", "LogDirection"])
             st.markdown(''':blue[Forms] :sunglasses:''')
