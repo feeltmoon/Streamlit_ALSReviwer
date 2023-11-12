@@ -63,10 +63,10 @@ if uploaded_file is not None:
         # Header:
         st.sidebar.title("DataDictionaryName Search")
         option_list_DictName = ['DataDictionaryName']
-        selected_option_dictName = st.sidebar.selectbox("Form Search", option_list_DictName)
+        selected_option_dictName = st.sidebar.selectbox("DataDictionaryName Search", option_list_DictName)
         user_input_dictName = st.sidebar.text_input("Please enter a DataDictionaryName key word")
 
-        if option_list_DictName is not None and selected_option_dictName != '':
+        if selected_option_dictName is not None and user_input_dictName != '':
             filtered_df_dictName = df_dict[df_dict[selected_option_dictName].str.contains(user_input_dictName, case=False, na=False)]
             filtered_df_dictName = pd.DataFrame(filtered_df_dictName,columns=["DataDictionaryName", "Ordinal", "UserDataString", "CodedData"])
             st.markdown(''':blue[DataDictionaryName] :tulip:''')
