@@ -20,7 +20,8 @@ uploaded_file = st.file_uploader("Choose your file", accept_multiple_files=False
 if uploaded_file is not None:
     bytes_data = uploaded_file.read()
 
-    if df = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Fields', engine='openpyxl'):
+    try: 
+        df = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Fields', engine='openpyxl'):
         #return df
         #if df is not None:
             #st.dataframe(df)
@@ -38,10 +39,8 @@ if uploaded_file is not None:
                 st.markdown(''':blue[Fields] :balloon:''')
                 st.dataframe(filtered_df)
                 st.markdown("""---""")
-    elif pd.errors.SheetNameError:
-        st.write("Worksheet named 'Fields' not found") 
-    else:
-        st.write("Loading error, pleae make sure the file uploaded is truly als.xlsx")
+    except pd.errors.SheetNameError:
+        st.write("Worksheet named 'Fields' not found")
 
     # Form Search:
     df_frm = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Forms', engine='openpyxl')
