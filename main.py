@@ -39,5 +39,5 @@ if uploaded_file is not None:
                 st.markdown(''':blue[Fields] :balloon:''')
                 st.dataframe(filtered_df)
                 st.markdown("""---""")
-    except pd.errors.SheetNameError:
+    except:
         st.write("Worksheet named 'Fields' not found")
