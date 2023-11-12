@@ -32,7 +32,7 @@ if uploaded_file is not None:
         user_input = st.sidebar.text_input("Please enter a field key word")
 
         if selected_option is not None and user_input != '':
-            filtered_df = df[df[selected_option].str.contains(user_input, case=False)]
+            filtered_df = df[df[selected_option].str.contains(user_input, case=False, na=False)]
             filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "FieldOID", "VariableOID", "DataFormat","DataDictionaryName", "IsLog", "IsVisible"])
             st.markdown(''':blue[Fields] :balloon:''')
             st.dataframe(filtered_df)
@@ -49,7 +49,7 @@ if uploaded_file is not None:
         user_input_frm = st.sidebar.text_input("Please enter a form key word")
 
         if selected_option_frm is not None and user_input_frm != '':
-            filtered_df_frm = df_frm[df_frm[selected_option_frm].str.contains(user_input_frm, case=False)]
+            filtered_df_frm = df_frm[df_frm[selected_option_frm].str.contains(user_input_frm, case=False, na=False)]
             filtered_df_frm = pd.DataFrame(filtered_df_frm,columns=["OID", "DraftFormName", "IsSignatureRequired", "LogDirection"])
             st.markdown(''':blue[Forms] :sunglasses:''')
             st.dataframe(filtered_df_frm)
