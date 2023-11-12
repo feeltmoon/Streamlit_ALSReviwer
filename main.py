@@ -41,3 +41,31 @@ if uploaded_file is not None:
                 st.markdown("""---""")
     except:
         st.write("Worksheet named 'Fields' not found")
+
+    # Form Search:
+    try:
+        df_frm = pd.read_excel(io.BytesIO(bytes_data), sheet_name='Forms', engine='openpyxl')
+        if df_frm is not None:
+            # Header:
+            st.sidebar.title("Form Search")
+            df_frm = df_frm[df_frm['DraftFormActive'] == True]
+            option_list_frm = ['OID', 'DraftFormName', 'LogDirection', 'IsSignatureRequired']
+            selected_option_frm = st.sidebar.selectbox("Form Search", option_list_frm)
+            user_input_frm = st.sidebar.text_input("Please enter a form key word")
+
+            if selected_option_frm is not None and user_input_frm != '':
+                filtered_df_frm = df_frm[df_frm[selected_option_frm].str.contains(user_input_frm, case=False, na=False)]
+                filtered_df_frm = pd.DataFrame(filtered_df_frm,columns=["OID", "DraftFormName", "IsSignatureRequired", "LogDirection"])
+                st.markdown(''':blue[Forms] :sunglasses:''')
+                st.dataframe(filtered_df_frm)
+                st.markdown("""---""")
+    except:
+        st.write("Worksheet named 'Forms' not found")
+
+    # DataDictionary Search
+    #df_dict = pd.read_excel(io.BytesIO(bytes_data), sheet_name='DataDictionaryEntries', engine='openpyxl')
+    #if df_dict is not None:
+
+
+
+#st.markdown("""---""")
