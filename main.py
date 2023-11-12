@@ -4,6 +4,9 @@ import streamlit as st
 import io
 import base64
 
+# Add a image:
+st.markdown('![Image](https://bing.gifposter.com/wallpaper-1896-DjurdjevicaBridge.html)')
+
 # Create the main function to run the app
 
 st.title("XLSX File Uploader and Filter")
