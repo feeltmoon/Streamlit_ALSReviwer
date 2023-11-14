@@ -34,10 +34,11 @@ if uploaded_file is not None:
         user_input = st.sidebar.text_input("Please enter a field key word")
 
         if selected_option is not None and user_input != '':
-            filtered_df = df[df[selected_option].str.contains(user_input, case=False, na=False)]
-            filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "FieldOID", "VariableOID", "DataFormat","DataDictionaryName", "IsLog", "IsVisible"])
-            st.markdown(''':blue[Fields] :balloon:''')
-            st.dataframe(filtered_df)
+            with st.container():
+                filtered_df = df[df[selected_option].str.contains(user_input, case=False, na=False)]
+                filtered_df = pd.DataFrame(filtered_df,columns=["FormOID", "PreText", "FieldOID", "VariableOID", "DataFormat","DataDictionaryName", "IsLog", "IsVisible"])
+                st.markdown(''':blue[Fields] :balloon:''')
+                st.dataframe(filtered_df)
             st.markdown("""---""")
     except:
         st.write("Worksheet named 'Fields' not found")
